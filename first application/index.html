@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Vue Project Guide Setup</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script> 
+
+    <div id="root">
+        <p>{{message}}</p>
+        <input v-model="message"/>
+    </div>
+    <script>
+        console.log("Yes! we are using Vue version",Vue.version)
+        var app = new Vue({
+            //根据DOM元素的CSS选择器
+           // el:"#root",
+           //一个页面有多个实例时，使用name会比较直观区别
+           name:"MyApp",
+            //数据
+            data(){
+                return {
+                    message:"Hello Vue.js!"
+                }
+            }
+        })
+
+        //不在Vue构造器中写el，用$mount也可以挂载到DOM元素
+        app.$mount("#root")
+    </script>
+</body>
+</html>
