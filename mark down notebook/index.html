@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Notebook</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script> 
+    <!-- Marked第三方库 -->
+    <script src="https://unpkg.com/marked"></script>
+    <div id="notebook">
+        <section class="main">
+            <textarea v-model="content"></textarea>
+        </section>
+        <!-- 在右边显示textarea的输入内容 -->
+        <aside class="preview" v-html="notePreView">
+            <!-- {{notePreView}} -->
+        </aside>
+    </div>
+    <script src="script.js"></script>
+</body> 
+</html>
