@@ -23,5 +23,6 @@ var state = {
   //Math.round() 方法可把一个数字舍入为最接近的整数
   //Math.random()可返回介于 0 ~ 1 之间的一个随机数。
   //使用随机的0或者1来决定谁先行动
-  currentPlayIndex:Math.round(Math.random())
+  currentPlayerIndex:Math.round(Math.random()),
+  testHand:[]
 }
