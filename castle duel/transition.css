@@ -1,0 +1,66 @@
+.fade-enter-active,
+.fade-leave-active{
+    transition: opacity 1s;
+}
+
+.fade-enter,
+.fade-leave-to{
+    opacity: 0;
+}
+
+
+.hand-enter-active,
+.hand-leave-active{
+    transition: opacity 0.5s;
+}
+
+/* 卡牌出现和隐藏的时候水平翻转效果 */
+.hand-enter-active .wrapper,
+.hand-leave-active .wrapper{
+    transition: transform .8s cubic-bezier(.08,.74,.34,1);
+    transform-origin: bottom center;
+}
+
+
+
+.hand-enter .wrapper,
+.hand-leave-to .wrapper{
+    transform: rotateX(90deg);
+}
+
+/* 让卡牌在翻转时由堆叠的效果 */
+.hand-enter-active .card,
+.hand-leave-active .card{
+    transition: margin .8s cubic-bezier(.08,.74,.31,1);
+}
+
+.hand-enter .card,
+.hand-leave-to .card{
+    margin: 0 -100px;
+}
+
+.card{
+/* 用于进入，移动和鼠标悬停的动画 */
+    transition: all .3s
+}
+.card-enter{
+    opacity: 0;
+    transition: scale(.8) translateX(100px);
+}
+
+.card-leave-active{
+    /* 离开过度的时间不同 */
+    transition: all 1s, opacity .5s .5s;
+    /* 保持水平位置不变 */
+    position: absolute !important;
+    /* 将玩家打出的卡牌绘制于其他卡牌之上 */
+    z-index: 10;
+    /* 在过渡期不允许单击 */
+    pointer-events: none;
+}
+
+.card-leave-to{
+    opacity: 0;
+    /* 卡牌上升的同时放大 */
+    transform: translateX(-105px) translateY(-300px) scale(1.5)
+}

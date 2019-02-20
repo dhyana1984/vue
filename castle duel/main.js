@@ -4,20 +4,22 @@ new Vue({
     el:"#app",
     data:state,
     //由于html不区分大小写，所以prop的名字currentPlayIndex用短横线命名
-    template:   `<div class="#app">
-                    <top-bar 
-                    :turn="turn" 
-                    :currentPlayerIndex="currentPlayerIndex"
-                    :players="players"/>
+    template: `<div id="#app">
+    <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
 
-               
 
-                    <hand :cards="testHand"/>
-                </div>`,
+    <transition name="hand">
+      <hand v-if="!activeOverlay" :cards="testHand" @card-play="testPlayCard"  />
+    </transition>
+
+    <overlay>Hello world!</overlay>
+
+
+  </div>`,
     mounted() {
         //在使用实例属性/方法的时候需要水用$符号，以便与用户自定义的定义的属性区分开来
-        console.log(this.$data ===state)
-        console.log(this.$data.currentPlayerIndex)
+        // console.log(this.$data ===state)
+        // console.log(this.$data.currentPlayerIndex)
     },
     computed: {
         testCard(){
@@ -58,6 +60,16 @@ new Vue({
                 def:cards[randomId]
             }
         },
+        //临时方法，hand组件出牌后回调的主组件的方法
+        testPlayCard(card){
+            console.log(123)
+            //将卡牌从玩家手中移除
+            const index = this.testHand.indexOf(card)
+            this.testHand.splice(index,1)
+        },
+        test(){
+            console.log(123)
+        }
 
     },
     //初始化hand组件
