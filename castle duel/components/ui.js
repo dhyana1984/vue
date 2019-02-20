@@ -84,3 +84,61 @@ Vue.component("overlay",{
         }
     },
 })
+
+//显示游戏回合开始的相关内容
+Vue.component("overlay-content-player-turn",{
+    template:   `<div>
+                    <div class="big" v-if="player.skipTurn">
+                        {{player.name}},<br>你的回合已经跳过了！
+                    </div>
+                    <div class="big" v-else>
+                        {{player.name}},<br>现在轮到你的回合！
+                    </div>
+                    <div>点击继续</div>
+                </div>`,
+    props:["player"]
+})
+
+//显示对手上一回合的出牌信息
+Vue.component("overlay-content-last-play",{
+    template:   `<div>
+                <div class="big" v-if="oppoent.skipTurn">
+                    {{oppoent.name}},<br>你的回合已经跳过了！
+                </div>
+                <template v-else>
+                    <div>
+                        {{oppoent.name}}已经出过牌了！
+                    </div>
+                    <card :def="lastplayedCard"/>
+                </template>
+            </div>`,
+    props:["opponent"],
+    computed: {
+        lastplayedCard(){
+            return getLastPlayedCard(this.opponent)
+        }
+    },
+})
+
+//显示玩家成功或者失败
+Vue.component("player-result",{
+    template:   `<div class="player-result" :class="result">
+                    <span class="name">{{player.name}}</span>是
+                    <span class="result">{{result}}</span>
+                </div>`,
+    props:['player'],
+    computed: {
+        return(){
+            return this.player.dead?"defeated" : "victorious"
+        }
+    },
+})
+
+//通过遍历players prop并使用play-result组件创建game-over浮层
+Vue.component("overlay-content-game-over",{
+    template:   `<div>
+                    <div class="big">Game Over</div>
+                    <player-result v-for="player in players" :player="player" />
+                </div>`,
+    props: ["players"]
+})

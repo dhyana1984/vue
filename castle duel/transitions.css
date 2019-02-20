@@ -64,3 +64,17 @@
     /* 卡牌上升的同时放大 */
     transform: translateX(-105px) translateY(-300px) scale(1.5)
 }
+
+
+/* 浮层在弹出的同时放大 */
+.zoom-enter-active,
+.zoom-leave-to{
+    transition: opacity .3s, transform .3s;
+
+}
+
+.zoom-enter,
+.zoom-leave-to{
+    opacity: 0;
+    transform: scale(.7);
+}

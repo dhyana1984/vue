@@ -3,19 +3,35 @@ new Vue({
     name:"game",
     el:"#app",
     data:state,
-    //由于html不区分大小写，所以prop的名字currentPlayIndex用短横线命名
+    
     template: `<div id="#app">
-    <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
+                <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
+
+                <div class="world">
+                    <castle v-for="(player,index) in players" 
+                    :player="player" 
+                    :index = index />
+                    <div class="land"/>
+                </div>
+
+                <transition name="hand">
+                <hand v-if="!activeOverlay" :cards="testHand" @card-play="testPlayCard"  />
+                </transition>
+
+                <transition name="zoom">
+                    <overlay v-if="activeOverlay" :key="activeOverlay">
+                        <component :is="'overlay-content-'+ activeOverlay" 
+                        :player="currentPlayer" :opponent="currentOpponent" :players="players"/>
+                    </overlay>
+                </transition>
+
+            
+                <transition name="fade">
+                <div class="overlay-background" v-if="activeOverlay" />
+                </transition>
 
 
-    <transition name="hand">
-      <hand v-if="!activeOverlay" :cards="testHand" @card-play="testPlayCard"  />
-    </transition>
-
-    <overlay>Hello world!</overlay>
-
-
-  </div>`,
+            </div>`,
     mounted() {
         //在使用实例属性/方法的时候需要水用$符号，以便与用户自定义的定义的属性区分开来
         // console.log(this.$data ===state)
@@ -82,6 +98,14 @@ new Vue({
 })
 
 //窗口大小变化的处理
-// window.addEventListener("resize",() =>{
-//     state.worldRatio = getWorldRatio()
-// })
+window.addEventListener("resize",() =>{
+    state.worldRatio = getWorldRatio()
+})
+
+//Tween.js
+requestAnimationFrame(animate);
+
+function animate(time){
+    requestAnimationFrame(animate);
+    TWEEN.update(time);
+}
