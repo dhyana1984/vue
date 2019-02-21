@@ -12,6 +12,9 @@ new Vue({
                     :player="player" 
                     :index = index />
                     <div class="land"/>
+                    <div class="clouds">
+                        <cloud v-for="index in 10" :type = "(index - 1) % 5 +1"/>
+                    </div>
                 </div>
 
                 <transition name="hand">
