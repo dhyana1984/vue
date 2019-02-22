@@ -2,9 +2,9 @@ let cards = [
   {
     id: 'pikemen',
     type: 'attack',
-    title: '长枪兵',
-    description: '消耗 <b>1</b><br>伤害 <b>1</b>',
-    note: '插到你去见你祖宗！',
+    title: 'Pikemen',
+    description: 'Spend 1 <b>Food</b><br>Deal 1 <b>Damage</b>',
+    note: 'Send your disposable men to a certain death.',
     play (player, opponent) {
       player.food -= 1
       opponent.health -= 1
@@ -13,8 +13,8 @@ let cards = [
   {
     id: 'catapult',
     type: 'attack',
-    title: '石弩',
-    description: '消耗 <b>2</b><br>伤害 <b>2</b>',
+    title: 'Catapult',
+    description: 'Spend 2 <b>Food</b><br>Deal 2 <b>Damage</b>',
     play (player, opponent) {
       player.food -= 2
       opponent.health -= 2
@@ -35,9 +35,9 @@ let cards = [
   {
     id: 'archers',
     type: 'attack',
-    title: '弓箭手',  
-    description: '消耗  <b>3</b><br> 攻击力 <b>3</b>',
-    note: '&#171;老子就是弓箭手，射死你是我唯一的目标&#187;',
+    title: 'Archers',
+    description: 'Spend 3 <b>Food</b><br>Deal 3 <b>Damage</b>',
+    note: '&#171;Ready your bows! Nock! Mark! Draw! Loose!&#187;',
     play (player, opponent) {
       player.food -= 3
       opponent.health -= 3

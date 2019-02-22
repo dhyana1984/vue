@@ -26,7 +26,7 @@ Vue.component("card",{
     
     props:["def"],
     //:class="'type-'+def.type"根据卡片不同应用不同的样式
-    template:   `<div class="card" :class="'type-'+def.type" @clicl="test">
+    template:   `<div class="card" :class="'type-'+def.type" @click="play">
                     <div class="title">
                         {{def.title}}
                     </div>
@@ -54,8 +54,12 @@ Vue.component("card",{
 Vue.component("hand",{
     template:   `<div class="hand">
                     <div class="wrapper">
-                        <transition-group  name="card" tag="div" class="cards">
-                            <card :key="card.uid"   v-for="card of cards" :def="card.def" @play="handlePlay(card)"/>
+                        <transition-group  name="card" tag="div" class="cards" 
+                        @after-leave = "handleLeaveTransitionEnd">
+                            <card :key="card.uid"   
+                            v-for="card of cards" 
+                            :def="card.def" 
+                            @play="handlePlay(card)"/>
                         </transition-group>
                     </div>
                 </div>`,
@@ -67,6 +71,9 @@ Vue.component("hand",{
             //向父组件发送card-play事件
             this.$emit("card-play",card)
         },
+        handleLeaveTransitionEnd(){
+            this.$emit("card-leave-end")
+        }
     },
 })
 
@@ -102,12 +109,12 @@ Vue.component("overlay-content-player-turn",{
 //显示对手上一回合的出牌信息
 Vue.component("overlay-content-last-play",{
     template:   `<div>
-                <div class="big" v-if="oppoent.skipTurn">
-                    {{oppoent.name}},<br>你的回合已经跳过了！
+                <div class="big" v-if="opponent.skipTurn">
+                    {{opponent.name}},<br>你的回合已经跳过了！
                 </div>
                 <template v-else>
                     <div>
-                        {{oppoent.name}}已经出过牌了！
+                        {{opponent.name}}刚刚出的牌是！
                     </div>
                     <card :def="lastplayedCard"/>
                 </template>
@@ -128,8 +135,8 @@ Vue.component("player-result",{
                 </div>`,
     props:['player'],
     computed: {
-        return(){
-            return this.player.dead?"defeated" : "victorious"
+        result(){
+            return this.player.dead?"失败者" : "胜利者"
         }
     },
 })
