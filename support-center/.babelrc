@@ -1,6 +1,16 @@
 {
   "presets": [
     ["env", { "modules": false }],
-    "stage-3"
-  ]
+    "stage-3",
+    "vue"
+  ],
+  "plugins": [[
+    "transform-runtime",
+    {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
+    }
+  ]]
 }

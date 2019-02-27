@@ -1,7 +1,7 @@
 {
   "name": "support-center",
-  "description": "A Vue.js project",
   "version": "1.0.0",
+  "description": "A web app wich allows customers posting support ticket and reading a FAQ.",
   "author": "dhyana1984 <xiongyi_1984@foxmail.com>",
   "license": "MIT",
   "private": true,
@@ -10,9 +10,9 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "vue": "^2.5.11",
-    "vue-router": "^3.0.2"
+    "moment": "^2.19.2",
+    "vue": "^2.5.8",
+    "vue-router": "^3.0.1"
   },
   "browserslist": [
     "> 1%",
@@ -22,15 +22,18 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
+    "babel-preset-vue": "^1.2.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
+    "stylus-loader": "^3.0.1",
     "vue-loader": "^13.0.5",
-    "vue-template-compiler": "^2.4.4",
+    "vue-template-compiler": "^2.5.8",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   }
