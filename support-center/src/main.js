@@ -19,7 +19,9 @@ Vue.use(VueState,state)
 
 async function main() {
   //获取用户信息
+  //页面启动或者加载时需要检查用户是否已经登录，所以刷新后仍然是登录状态
   try{
+    //如果调用了/logout，再调用/user就会返回null，否则返回userinfo
     state.user = await $fetch("user")
   }catch(e){
     console.warn(e)

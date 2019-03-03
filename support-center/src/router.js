@@ -14,7 +14,10 @@ const routes=[
     //路由放这里
     {path:"/", name:"home", component:Home},
     {path:"/faq",name:"faq",component:FAQ},
-    {path:"/login",name:"login",component:Login},
+    {
+        path:"/login",name:"login",component:Login,
+        meta:{guest : true} //标记为访客路由，登录过的用户不能访问Login页面
+    },
     {
         path:"/tickets",name:"tickets",component:TicketLayout,
         meta:{ private:true} //设置路由为私有，必须登录才能访问，可以将任何信息放入meta以扩展路由功能
@@ -47,6 +50,11 @@ router.beforeEach((to, from, next) =>{
             }
         })
         return  //这里不要掉，否则会执行下面的next
+    }
+    //检查路由是否仅限于访客浏览，例如Login页面
+    if(to.meta.guest && state.user){
+        next({name:"home"})
+        return //不要掉
     }
 
     next()
