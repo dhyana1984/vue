@@ -14,13 +14,26 @@ export default{
     }
 }
 
-export async function $fetch (url){
-    const response = await fetch("http://localhost:3000/questions")
+//option参数是浏览器fetch方法的一个可选对象，它允许我们更改不同的参数，例如所选用的HTTP方法，请求主体等
+export async function $fetch (url,options){
+    /*
+       告诉服务器将始终在请求主体中发送Json，并告诉浏览器还将包含验证令牌 
+    */
+    const finalOptions = Object.assign({},{
+        headers:{
+            "Content-Type":"application/json",
+
+        },
+        credentials:"include",
+    }, options)
+    const response = await fetch("http://localhost:3000/"+url,finalOptions)
     if(response.ok){
         const data= await response.json();
         return data;
     }else{
-       const error = new Error("error");
-       throw error
+        const message = await response.text()
+        const error = new Error(message);
+        error.response=response
+        throw error
     }
 }

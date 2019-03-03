@@ -2,21 +2,54 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import FAQ from "./components/FAQ.vue"
 import Home from "./components/Home.vue"
+import Login from "./components/Login.vue"
+import TicketLayout from "./components/TicketLayout.vue"
+import state from './state'
 
 //将VueRouter插件安装到Vue中
 Vue.use(VueRouter)
 
 //创建路由信息
 const routes=[
-    //理由放这里
+    //路由放这里
     {path:"/", name:"home", component:Home},
     {path:"/faq",name:"faq",component:FAQ},
+    {path:"/login",name:"login",component:Login},
+    {
+        path:"/tickets",name:"tickets",component:TicketLayout,
+        meta:{ private:true} //设置路由为私有，必须登录才能访问，可以将任何信息放入meta以扩展路由功能
+     
+    },
 ]
 
 //创建路由对象
 const router= new VueRouter({
     routes,
     mode:"history",//路由模式默认是hash即带#，还有history和abstract
+})
+
+/*
+beforeEach在路由每次解析之前运行，允许在必要时用另一个路由替换目标路由
+参数：
+to是目标路由
+from是以前的路由
+next是为了完成解析不得不在某个时刻调用的函数，如果next不调用将会卡主
+*/
+router.beforeEach((to, from, next) =>{
+    console.log("to",to.name)
+    //如果用户没有登录，重定向到login组件
+    if(to.meta.private && !state.user){
+        next({
+            name:"login",
+            params:{
+                //保存用户想要访问的原始页面，当登录后重定向到这个页面
+                wantedRoute:to.fullPath
+            }
+        })
+        return  //这里不要掉，否则会执行下面的next
+    }
+
+    next()
 })
 
 export default router;

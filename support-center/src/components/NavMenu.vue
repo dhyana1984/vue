@@ -2,6 +2,14 @@
     <nav class="menu">
         <router-link :to="{name:'home'}" exact>Home</router-link>
         <router-link :to="{name:'faq'}">FAQ</router-link>
+        <router-link :to="{ name: 'tickets' }">Support tickets</router-link>
+
+        <div class="spacer"></div>
+        <template v-if="$state.user">
+           <a>{{ $state.user.username}}</a>
+           <a @click="logout">Logout</a>
+        </template>
+        <router-link v-else :to="{name:'login'}" >Login</router-link>
     </nav>
 </template>
 
@@ -13,3 +21,16 @@
         border-bottom-color:$primary-color;
     }
 </style>
+<script>
+export default {
+    methods: {
+       async logout(){
+            const  result = await this.$fetch("logout")
+            //如果用户登出，设置全局state的user为null
+            if(result.satus ==="ok"){
+                this.$state.user= null;
+            }
+       }
+    },
+}
+</script>
