@@ -9,7 +9,7 @@
             </div>
         </header>
         <NavMenue/>
-        <!-- 菜单放在这里 -->
+        <!-- 点击路由按钮后，加载的内容 -->
         <router-view />
     </div>
 </template>

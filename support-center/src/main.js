@@ -6,6 +6,12 @@ import state from "./state"
 import VueState from "./plugins/state"
 import VueFetch,{$fetch} from "./plugins/fetch"
 import './global-components'
+import * as filters from "./filters"
+
+//循环注册所有filter
+for(const key in filters){
+  Vue.filter(key, filters[key])
+}
 
 //这里的VueFetch就是fetch.js里面的install方法的Vue
 //第二个参数定义的是fetch.js里面的install方法的options

@@ -1,14 +1,19 @@
 
 <template>
    <!-- 这里使用:value.prop用来钙素Vue直接设置DOM节点的value属性而不是设置HTML属性 -->
+   <!-- 用element来决定创建input或者textarea -->
     <div class="row">
-        <input class="input" 
+        <component 
+        :is="element"
+        class="input" 
         :class="inputClass" 
         :name="name"
         :type="type"
         :value.prop="text"
         :placeholder="placeholder"
-        @input="update"/>
+        @input="update"
+        v-bind="$attr"
+        />
        
     </div>
 </template>
@@ -39,6 +44,10 @@ export default {
             return {
                 "invalid": this.invalid
             }
+        },
+        //用来确定渲染哪种input html元素
+        element(){
+            return this.type === "textarea" ? this.type:"input"
         }
     },
     methods: {
@@ -50,6 +59,6 @@ export default {
     model:{
         props:"text",
         event:"update",
-    }
+    },
 } 
 </script>
