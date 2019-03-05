@@ -1,6 +1,6 @@
 <template>
     <main class="faq">
-        <h1>Frequently Asked Questions</h1>
+        <h1>常见问题及回答</h1>
         <Loading v-if="remoteDataBusy" />
         <div class="error" v-if="hasRemoteErrors">
             Can't load the questions

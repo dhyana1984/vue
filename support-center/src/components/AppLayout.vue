@@ -5,7 +5,7 @@
                 <img src="../assets/logo.svg" alt="" class="img">
             </div>
             <div>
-                My shirt shop
+                Wee Geek Club
             </div>
         </header>
         <NavMenue/>

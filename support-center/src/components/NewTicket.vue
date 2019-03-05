@@ -1,15 +1,15 @@
 <template>
     <div class="new-ticket">
-        <h1>New ticket</h1>
+        <h1>提交问题</h1>
         <SmartForm
-            title="New Tiket"
+            title="创建问题"
             :operation ="operation"
             :valid="valid"
         >
             <FormInput
                 name="title"
                 v-model="title"
-                placeholder="Short description (max 100 chars)"
+                placeholder="简短的描述 (100个字符以内)"
                 maxlength="100"
                 required/>
      
@@ -17,7 +17,7 @@
                 type="textarea"
                 name="description"
                 v-model="description"
-                placeholder="Describe your problem in details"
+                placeholder="描述问题细节"
                 required
                 rows="4"/>
             <template slot="actions"> 
@@ -26,13 +26,13 @@
                     :to="{name:'tickets'}"
                     class="secondary"
                 >
-                    Go back
+                    上一步
                 </router-link>
                 <button
                     type="submit"
                     :disabled="!valid"
                 >
-                    Send ticket
+                    提交
                 </button>
             </template>
         </SmartForm>

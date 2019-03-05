@@ -1,12 +1,12 @@
 <template>
     <main class="home">
         <h1>
-           Welcome to our support center 
+           欢迎来到帮助中心
         </h1>
         <p>
-            We are here to help! Please read the <a>F.A.Q</a> frst, 
-            and if you don't find the answer to your question, 
-            <a>send us a ticket</a>
+           我在这里为您提供帮助，请先阅读 <a>常见问题</a>，  
+            如果没办法帮助到您，请到<a>需要帮助</a>提交您的问题,我看到后会尽快处理，谢谢 
+            
         </p>
     </main>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <main class="login">
-        <h1>Please login to continue</h1>
+        <h1>请先登录</h1>
         <SmartForm
             class="form"
             :title="title"
@@ -34,13 +34,13 @@
                         class="secondary"
                         @click="mode='signup'">
                     
-                        Sign up
+                       注册
                     </button>
                     <button
                         type="submit"
                         :disabled="!valid">
                     
-                        Login
+                        登录
                     </button>
                 </template>
                 <template v-else-if="mode==='signup'">
@@ -48,12 +48,12 @@
                         type="button"
                         class="secondary"
                         @click="mode='login'">
-                        Back to login
+                       回到登录
                     </button>
                     <button
                         type="submit"
                         :disabled="!valid">
-                        Create account
+                        创建账号
                     </button>
                 </template>
             </template>
@@ -101,9 +101,6 @@ export default {
         //在SmartForm.vue中的submit方法中动态调用提交表单的方法
         async operation() {
             await this[this.mode]()
-        },
-        async login(){
-            //todo
         },
         async signup(){
             await this.$fetch("signup",{

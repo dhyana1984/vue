@@ -1,15 +1,17 @@
 <template>
     <nav class="menu">
-        <router-link :to="{name:'home'}" exact>Home</router-link>
-        <router-link :to="{name:'faq'}">FAQ</router-link>
-        <router-link :to="{ name: 'tickets' }">Support tickets</router-link>
+        <router-link :to="{name:'home'}" exact>首页</router-link>
+        <router-link :to="{name:'faq'}">常见问题</router-link>
+        <router-link :to="{ name: 'tickets' }">需要帮助</router-link>
 
         <div class="spacer"></div>
         <template v-if="$state.user">
            <a>{{ $state.user.username}}</a>
-           <a @click="logout">Logout</a>
+           <a @click="logout">登出</a>
         </template>
-        <router-link v-else :to="{name:'login'}" >Login</router-link>
+        <transition name="fade" mode="out-in" v-else>
+            <router-link  :to="{name:'login'}" >登录</router-link>
+        </transition>
     </nav>
 </template>
 
@@ -27,9 +29,14 @@ export default {
        async logout(){
             const  result = await this.$fetch("logout")
             //如果用户登出，设置全局state的user为null
-            if(result.satus ==="ok"){
+            if(result.status ==="ok"){
                 this.$state.user= null;
             }
+            //如果当前是私有页面，则跳转到首页
+            
+            if (this.$route.matched.some(m => m.meta.private)) {
+          this.$router.push({ name: 'home' })
+        }
        }
     },
 }

@@ -7,20 +7,20 @@ export default {
             tickets:"tickets",
         }),
     ],
-    components:{
-        Ticket
-    },
-    data(){
-        return{
-            id:null,
-        }
-    },
+    // components:{
+    //     Ticket
+    // },
+    // data(){
+    //     return{
+    //         id:null,
+    //     }
+    // },
 
 }
 </script>
 
 <template>
-    <div class="tickets">
+    <div class="tickets" id="tickets">
         <Loading v-if="remoteDataBusy" />
         <div class="empty" v-else-if="tickets.length === 0">
             You don't have any ticket yet.
@@ -36,6 +36,6 @@ export default {
                 <span class="date">{{ticket.date | date}}</span>
             </div>
         </section>
-        <Ticket v-if="id" :id="id"/>
+        <!-- <Ticket v-if="id" :id="id"/> -->
     </div>
 </template>
