@@ -23,7 +23,7 @@
             <template slot="actions"> 
                 <router-link
                     tag="button"
-                    :to="{name:'ticket'}"
+                    :to="{name:'tickets'}"
                     class="secondary"
                 >
                     Go back
@@ -68,7 +68,11 @@ export default {
                     description: this.description
                 })
             })
+            
             this.title = this.description=""
+            //回到ticket列表
+            this.$router.replace(this.$route.params.wantedRoute||
+            {name:"tickets"})
         }
     },
 }

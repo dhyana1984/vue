@@ -10,7 +10,11 @@
         </header>
         <NavMenue/>
         <!-- 点击路由按钮后，加载的内容 -->
-        <router-view />
+          <!-- 添加过渡效果 渐隐渐现效果-->
+        <transition name="fade" mode="out-in">
+            <router-view />
+        </transition>
+        
     </div>
 </template>
 

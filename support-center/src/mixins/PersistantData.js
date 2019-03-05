@@ -30,7 +30,7 @@ export default function(id, fields){
             
                 if(savedValue !==null){
                    const a=JSON.parse(savedValue)
-                    alert(field)
+                    //alert(JSON.parse(savedValue))
                     this.$data[field] = JSON.parse(savedValue)
                 }
             }

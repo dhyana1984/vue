@@ -2,6 +2,7 @@
 <template>
    <!-- 这里使用:value.prop用来钙素Vue直接设置DOM节点的value属性而不是设置HTML属性 -->
    <!-- 用element来决定创建input或者textarea -->
+   <!--注意v-bind="$attrs"，不是v-bind="$attr"  -->
     <div class="row">
         <component 
         :is="element"
@@ -12,7 +13,7 @@
         :value.prop="text"
         :placeholder="placeholder"
         @input="update"
-        v-bind="$attr"
+        v-bind="$attrs"
         />
        
     </div>
@@ -57,7 +58,8 @@ export default {
         }
     },
     model:{
-        props:"text",
+        //注意这里是prop不是props
+        prop:"text",
         event:"update",
     },
 } 
