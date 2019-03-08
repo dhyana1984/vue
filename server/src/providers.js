@@ -20,11 +20,12 @@ export async function initData () {
     },
     {
       title: '我在哪里可以看到网站的所有内容？',
-      content: `目前我还没有时间做一个大的内容目录，所以想体验其他内容请参考以下地址（除此帮助中心，其他内容不用注册）：
+      content: `目前我还没有时间做一个大的内容目录，所以想体验其他内容请参考以下地址（除此帮助中心，其他内容不用注册）：<br/>
                 <p>小朋友刷题器：http://weegeek.club/kidexercise/</p>
                 <p>一个基于Vue的卡牌游戏Demo：http://www.weegeek.club/castleduel</p>
                 <p>一个基于angular的在线商店Demo：http://www.weegeek.club/angularsportsstore</p>
-                更多内容尽情关注
+                <br/>
+                陆续会上更多内容，敬请关注。
                 `,
     },
     {
@@ -38,7 +39,7 @@ export async function initData () {
     },
     {
       title: '为什么这里需要登录?',
-      content: 'Inventore iste reprehenderit aut reiciendis repellendus. Quas cumque aliquam accusantium et itaque quisquam voluptatem. Commodi quo quia occaecati dicta ratione qui at tempore. At saepe est et saepe accusamus voluptates.',
+      content: '因为我需要知道是谁提出的问题，以便于更好的帮助大家解决问题以及改进我的这些应用。',
     },
   ])
 }

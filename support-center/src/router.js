@@ -16,20 +16,20 @@ Vue.use(VueRouter)
 //创建路由信息
 const routes=[
     //路由放这里
-    {path:"/", name:"home", component:Home},
-    {path:"/faq",name:"faq",component:FAQ},
+    {path:"/SupportCenter", name:"home", component:Home},
+    {path:"/SupportCenter/FAQ",name:"faq",component:FAQ},
     {
-        path:"/login",name:"login",component:Login,
+        path:"/SupportCenter/Login",name:"login",component:Login,
         meta:{guest : true} //标记为访客路由，登录过的用户不能访问Login页面
     },
     {
-        path:"/tickets",component:TicketLayout,
+        path:"/SupportCenter/Tickets",component:TicketLayout,
         meta:{ private:true}, //设置路由为私有，必须登录才能访问，可以将任何信息放入meta以扩展路由功能
         //子路由
         children:[
             //默认子路由，父路由的path会转移给默认子路由
             {path:"",name:"tickets",component:Tickets},
-            {path:"new",name:"new-ticket",component:NewTicket},
+            {path:"New",name:"new-ticket",component:NewTicket},
             //props:true用props属性将所有路由参数作为props传给Ticket组件
             {path:":id",name:"ticket",component:Ticket,props:true},
           

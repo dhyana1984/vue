@@ -28,8 +28,8 @@ export async function $fetch (url,options){
         },
         credentials:"include",
     }, options)
-    const response = await fetch("http://localhost:3000/"+url,finalOptions)
-    if(response.ok){
+    const response = await fetch("http://www.weegeek.club:3000/"+url,finalOptions)
+    if(response!==404){
         const data= await response.json();
         return data;
     }else if(response.status===403){

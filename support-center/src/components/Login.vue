@@ -76,9 +76,9 @@ export default {
         title(){
             switch (this.mode) {
                 case "login":
-                    return "Login"
+                    return "登录"
                 case "signup":
-                    return "Create a new account"
+                    return "创建一个新账号"
             }
         },
         //验证重新输入密码时重新输入的密码不等于第一个密码
