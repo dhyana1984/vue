@@ -4,6 +4,7 @@ Vue.component("top-bar",{
     //props是从父组件传递而来
     props:["players","currentPlayerIndex","turn"],
     template:   `<div class="top-bar" :class="'player-' + currentPlayerIndex">
+                    <a class="supportcenter" href="http://www.weegeek.club/supportcenter/" target="_blank">Support Center</a>
                     <div class="player p0">{{players[0].name}}</div>
                     <div class="turn-counter">
                         <img class="arrow" src="svg/turn.svg"/>

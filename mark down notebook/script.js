@@ -5,7 +5,7 @@ new Vue({
     data(){
         return {
             //第一次加载页面时加载数据
-            content: localStorage.getItem("content") || "You can write in **markdown**",
+            content: localStorage.getItem("content") || "你可以开始写 **markdown**",
             //content:"this is a note."
             notes:JSON.parse(localStorage.getItem("notes")) || [],
             //选中的笔记Id
@@ -103,8 +103,8 @@ new Vue({
              const time =Date.now();
              const note ={
                  id:String(time),
-                 title:"New note " +(this.notes.length +1),
-                 content: '**Hi!** This notebook is using [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting!',
+                 title:"新建笔记 " +(this.notes.length +1),
+                 content: '**Hi!** 本笔记本使用 [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 格式!',
                  created:time,
                  favorite: false,
                 }
@@ -120,7 +120,7 @@ new Vue({
             console.log("Notes saved",new Date())
         },
         removeNote(){
-            if(this.selectedNote && confirm("Delete the note?")){
+            if(this.selectedNote && confirm("确认删除本笔记？?")){
                 const index = this.notes.indexOf(this.selectedNote)
                 if(index!== -1){
                     this.notes.splice(index,1)

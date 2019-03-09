@@ -13,9 +13,11 @@
     <!-- 时间和日期操作库 -->
     <script src="https://unpkg.com/moment"></script>
     <div id="notebook">
+      
         <aside class="side-bar">
+           
             <div class="toolbar">
-                <button @click="addNote" v-bind:title="addButtonTitle"><i class="material-icons">add</i>Add note</button>
+                <button @click="addNote" v-bind:title="addButtonTitle"><i class="material-icons">add</i>添加笔记</button>
             </div>
             <!-- 笔记本列表 -->
             <div class="notes">
@@ -25,6 +27,9 @@
                     {{note.title}}
                 </div>
             </div>
+            <div class="note">
+                    <a href="http://www.weegeek.club/supportcenter/" target="_blank">Support Center</a>
+                </div>
         </aside>
         <!-- 主面板 -->
         <!-- tempate的作用是统一使用v-if。template不会出现在DOM中，用于对实际元素的重新组合 -->
@@ -32,33 +37,33 @@
             <section class="main" >
                 <div class="toolbar">
                    <input v-model="selectedNote.title" type="text" placeholder="Note title" />
-                   <button @click="favoriteNote" title="Favorite note">
+                   <button @click="favoriteNote" title="收藏笔记">
                        <i class="material-icons">
                             {{selectedNote.favorite?"star":"star_border"}}
 
                        </i>
                    </button>
-                   <button @click="removeNote" title="Remove note">
+                   <button @click="removeNote" title="删除笔记">
                        <i class="material-icons">delete</i>
                     </button>
                 </div>
-                <textarea v-model="selectedNote.content"></textarea>
+                <textarea v-model="selectedNote.content" rows="30"></textarea>
                 <div class="toolbar status-bar">
                     <!-- 显示笔记创建时间 -->
                     <span class="date">
-                        <span class="label">Created</span>
+                        <span class="label">创建于</span>
                         <span class="value">{{ selectedNote.created | date}}</span>
                     </span>
                     <span class="lines">
-                            <span class="label">Lines</span>
+                            <span class="label">行数</span>
                             <span class="value">{{ linesCount}}</span>
                     </span>
                     <span class="words">
-                            <span class="label">Words</span>
+                            <span class="label">字数</span>
                             <span class="value">{{ wordsCount}}</span>
                     </span>
                     <span class="characters">
-                            <span class="label">Characters</span>
+                            <span class="label">字符数</span>
                             <span class="value">{{ charactersCount}}</span>
                     </span>
                 </div>
