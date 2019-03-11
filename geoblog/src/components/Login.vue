@@ -15,6 +15,9 @@ export default {
         openGoogleSignin(){
             //TODO
         }
+    },
+    created(){
+        console.log(111)
     }
 }
 </script>

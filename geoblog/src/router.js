@@ -7,17 +7,17 @@ import NotFound from "./components/NotFound.vue"
 //将VueRouter插件安装到Vue中
 Vue.use(VueRouter)
 
-//创建路由信息
-const routers = [
+//创建路由信息。注意这里的routes不能错，一定要用routes变量名
+const routes = [
     {path:"/", name:"home",component:GeoBlog, meta:{private:true}},
-    {path:"/login", name:"login",comment:Login},
+    {path:"/login", name:"login",component:Login},
     {path:"*",component:NotFound},
 ]
 
 
 //创建路由对象
 const router = new VueRouter({
-    routers,
+    routes,
     mode: "history",
     scrollBehavior(to,from,savedPosition){
 
