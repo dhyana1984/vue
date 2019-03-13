@@ -31,16 +31,28 @@ const store = new Vuex.Store({
     2.playload，是dispatch分发时带上的参数
     */
     actions:{
-        login({commit}){
-            const userData = {
-                profile:{
-                    displayName:"Mr Cat",
-                },
-            };
-            commit("user",userData);
+      async login({commit}){
+        try{
+            const user = await $fetch("user")
+            commit("user",user);
+            if(user){
+                //重定向到对应的路由，或返回首页
+                router.replace(router.currentRoute.params.wantedRoute ||
+                    {name:"home"})
+            }
+        }catch(e){
+                console.warn(e)
+            }
         },
         logout({commit}){
             commit("user",null)
+            $fetch("logout")
+            //如果这个路由是私有的，跳到登录界面
+            if(router.currentRoute.matched.some(r => r.meta.private)){
+                router.replace({name:"login",params:{
+                    wantedRoute:router.currentRoute.fullPath
+                }})
+            }
         }
     }
 })

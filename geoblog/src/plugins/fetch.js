@@ -1,5 +1,6 @@
 //自定义数据发送插件
 import router from "../router"
+import store from "../store";
 
 let baseUrl
 export default{
@@ -33,7 +34,7 @@ export async function $fetch (url,options){
         return data;
     }else if(response.status===403){
         //如果会话不再有效，登出
-        //TODO
+        store.dispatch("logout")
         
         //如果该路由是私有的，跳到登录页面
         if(router.currentRoute.matched.some(r => r.meta.private)){
