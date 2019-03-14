@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Vuex from "vuex"
-
+import { $fetch } from '../plugins/fetch'
+import router from "../router"
 Vue.use(Vuex)
 
 //使用Vuex.Store构造函数创建store
@@ -21,7 +22,15 @@ const store = new Vuex.Store({
     //利用getter让组件取state
     getters:{
         user:state =>state.user,
-        userPicture: ()=> null,
+        userPicture: (state,getters)=> {
+            const user = getters.user
+            if(user){
+                const photos = user.profile.photos;
+                if(photos.length !==0){
+                    return photos[0].value
+                }
+            }
+        },
     },
     /*
     action的声明由一个类型和一个处理函数构成。这个处理函数不能直接调用，
@@ -31,6 +40,9 @@ const store = new Vuex.Store({
     2.playload，是dispatch分发时带上的参数
     */
     actions:{
+      async init ({dispatch}){
+          await dispatch ("login")
+      },
       async login({commit}){
         try{
             const user = await $fetch("user")
