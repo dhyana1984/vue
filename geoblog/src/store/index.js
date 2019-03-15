@@ -2,6 +2,9 @@ import Vue from "vue"
 import Vuex from "vuex"
 import { $fetch } from '../plugins/fetch'
 import router from "../router"
+import maps from "./maps"
+
+
 Vue.use(Vuex)
 
 //使用Vuex.Store构造函数创建store
@@ -66,6 +69,9 @@ const store = new Vuex.Store({
                 }})
             }
         }
+    },
+    modules:{
+        maps,
     }
 })
 

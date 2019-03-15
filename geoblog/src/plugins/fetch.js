@@ -28,7 +28,7 @@ export async function $fetch (url,options){
         },
         credentials:"include",
     }, options)
-    const response = await fetch("http://localhost:3000/"+url,finalOptions)
+    const response = await fetch("http://www.weegeek.club:3001/"+url,finalOptions)
     if(response.ok){
         const data= await response.json();
         return data;

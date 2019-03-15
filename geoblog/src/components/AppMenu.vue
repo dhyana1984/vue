@@ -75,7 +75,7 @@ export default {
         y(){return this.$store.getters.b}
     }*/
     methods: mapActions({
-        centerOnUser:"login",
+        centerOnUser:"maps/centerOnUser",
         logout: "logout"
     })
 }
