@@ -18,6 +18,8 @@ sync(store, router)
 async function main () {
   await store.dispatch('init')
 
+  // 下面这一行是让new Vuew({xx})被eslint忽略npm
+  // eslint-disable-next-line no-new
   new Vue({
     el: '#app',
     router,

@@ -1,5 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+const FriendlyErrors = require('friendly-errors-webpack-plugin')
+
 
 module.exports = {
   entry: './src/main.js',
@@ -10,6 +12,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(jsx?|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+      },
       {
         test: /\.css$/,
         use: [
@@ -74,5 +81,10 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
+  ])
+} else {
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.NamedModulesPlugin(),
+    new FriendlyErrors(),
   ])
 }
